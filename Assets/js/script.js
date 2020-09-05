@@ -10,7 +10,10 @@ function getWeather() {
         return response.json();
       })
       .then(function(data) {
-        console.log(data.weather[0].icon);
+        // if (!data) {
+        //     alert('Could not find a city by that name! Please try again.');
+        //   }
+        console.log(data);
         var unixTime = data.dt
         var date = new Date(unixTime * 1000);
         var newDate = date.toLocaleString();
@@ -19,6 +22,7 @@ function getWeather() {
         var responseContainerEl = document.querySelector('#response-container');
         responseContainerEl.innerHTML = '';
         var cityName = document.getElementById('cityName');
+        cityName.innerHTML = '';
         cityName.innerHTML = '<h2>' + data.name + '(' + newDate + ')<img src="http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png"></img></h2>'
         
         var current = document.createElement('p');
@@ -43,8 +47,25 @@ function getWeather() {
 
             current = document.getElementById("current");
             current.innerHTML += 'UV Index: <span id="UV">' + data.current.uvi + '</span>';
-            // var newDate = new Date(data.current.dt).toLocaleDateString();
-            // console.log(newDate)
+            var UV = document.getElementById("UV");
+            if (data.current.uvi <= 2) {
+            UV.style.backgroundColor = "green";
+            }
+            else if (data.current.uvi > 2 && data.current.uvi <= 5) {
+                UV.style.backgroundColor = "yellow";
+            }
+            else if (data.current.uvi > 5 && data.current.uvi <= 7) {
+                UV.style.backgroundColor = "orange";
+            }
+            else if (data.current.uvi > 7 && data.current.uvi <= 10) {
+                UV.style.backgroundColor = "red";
+            }
+            else {
+                UV.style.backgroundColor = "purple";
+            }
+        })
+        .catch(function(error){
+            alert("City not found! Please try again.")
         });
   }
   
