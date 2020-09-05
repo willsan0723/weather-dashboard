@@ -5,3 +5,12 @@ h1 {
     background-color: rgb(66, 64, 64);
     color: white;
 }
+
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+/* 
+.justify-space-between {
+    justify-content: space-between;
+  } */
