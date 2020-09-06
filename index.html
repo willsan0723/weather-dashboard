@@ -19,10 +19,10 @@
             <h3>Search For a City:</h3>
             <form id="user-form" class="card-body">
               <input id="city" type="text" autofocus="true" class="form-input" />
-              <button type="button" class="btn" onclick="getWeather()"><i class="fas fa-search"></i></button>
+              <button type="button" class="btn" onclick="getWeather(document.getElementById('city').value)"><i class="fas fa-search"></i></button>
             </form>
+            <h4 onclick="clearStorage()">Clear Saved Cities</h4>
             <ul id="city-store" class="card-body">
-                <!-- li goes here will call back search function for each button -->
             </ul>
         </div>
         <div class="col-12 col-md-8">
@@ -31,6 +31,7 @@
           </div>            
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>

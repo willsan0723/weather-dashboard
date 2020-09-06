@@ -2,9 +2,8 @@
 var savedCities = [];
 var cityStore = document.getElementById("city-store");
 
-function getWeather() {
-    var city = document.getElementById('city').value;
-    // var rating = document.getElementById("rating").value;
+
+function getWeather(city) {    
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a2ad19dff1334775c857ddd51cc297c4&units=imperial'
     )
@@ -76,6 +75,11 @@ function getWeather() {
         
 }
 
+function clearStorage() {
+    localStorage.clear();
+    cityStore.innerHTML = '';    
+}
+
 // loadcities
 function loadCities() {
 
@@ -86,8 +90,9 @@ if (!loadedCities) {
 loadedCities = JSON.parse(loadedCities);
 for (var i = 0; i < loadedCities.length; i++) {
     savedCities.push(loadedCities[i]);
-    var newCity = document.createElement('li');
-    newCity.textContent = loadedCities[i];
+    var newCity = document.createElement('li');    
+    newCity.textContent = loadedCities[i];    
+    newCity.setAttribute("onclick", "getWeather($(this).text())");    
     cityStore.appendChild(newCity);
 }
 }
@@ -95,6 +100,7 @@ for (var i = 0; i < loadedCities.length; i++) {
 function newCity(name) {
     var newCity = document.createElement('li');
     newCity.textContent = name;
+    newCity.setAttribute("onclick", "getWeather($(this).text())");    
     cityStore.appendChild(newCity);
 }
 
