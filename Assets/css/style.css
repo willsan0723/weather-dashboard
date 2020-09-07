@@ -6,6 +6,10 @@ h1 {
     color: white;
 }
 
+h5 {
+    font-size: 18px;
+}
+
 .flex-row {
     display: flex;
     flex-wrap: wrap;

@@ -52,8 +52,8 @@ function getWeather(city) {
             var date = new Date(unixTime * 1000);
             var newDate = date.toLocaleString();
             newDate = moment(newDate).format('M/D/YYYY');
-            fiveDay.innerHTML += '<div class="card bg-primary text-light"><div class="card-body"><h5 class="card-title">' + newDate +
-             '</h5><img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img><p class="card-text">Temperature: ' + data.daily[i].temp.day.toFixed(1) + '\xB0F</br>Humidity: ' + data.daily[i].humidity + '%</p></div></div>'; 
+            fiveDay.innerHTML += '<div class="card col-12 col-md-3 bg-primary text-light m-1" style="max-width:185px;"><div class="card-body"><h5 class="card-title">' + newDate +
+             '</h5><img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img><p class="card-text">Temp: ' + data.daily[i].temp.day.toFixed(1) + '\xB0F</br></br>Humidity: ' + data.daily[i].humidity + '%</p></div></div>'; 
             // fiveDay.innerHTML += '<div class="card-body">'; 
             // fiveDay.innerHTML += '<h4 class="card-title">' + newDate + '</h4>';
             // fiveDay.innerHTML += '<img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img>';

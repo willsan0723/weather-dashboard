@@ -14,9 +14,9 @@
 <body>
     <header>
         <h1>Weather Dashboard</h1>
-    </header>
-    <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
+    </header>    
+    <main class="flex-row justify-space-between no-gutters">
+        <div class="col-12 col-md-2">
             <h3>Search For a City:</h3>
             <form id="user-form" class="card-body">
                 <input id="city" type="text" autofocus="true" class="form-input" />
@@ -27,15 +27,17 @@
             <ul id="city-store" class="card-body">
             </ul>
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-10">
             <div class="card p-3">
             <div id="cityName"></div>
             <div id="response-container" class="list-group card-body"></div>
             </div>
-            <h3 class="m-2">5-Day Forecast:</h3>
-            <div id="5day" class="p-2 col-2"></div>
+            <h3 class="m-2">5-Day Forecast:</h3>            
+            <div class="flex-row">
+            <div id="5day" class="p-2 d-flex flex-wrap" style="width: 100%;"></div>
+            </div>            
         </div>
-    </main>       
+    </main>      
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
