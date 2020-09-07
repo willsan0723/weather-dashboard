@@ -50,11 +50,16 @@ function getWeather(city) {
             for (var i = 1; i < 6; i++) {
             var unixTime = data.daily[i].dt;
             var date = new Date(unixTime * 1000);
-            var newDate = date.toLocaleString();           
-            fiveDay.innerHTML += '<h4>' + newDate + '</h4>';
-            fiveDay.innerHTML += '<img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img>';
-            fiveDay.innerHTML += 'Temperature: ' + data.daily[i].temp.day.toFixed(1) + '\xB0F</br>';
-            fiveDay.innerHTML += 'Humidity: ' + data.daily[i].humidity + '%</br>';
+            var newDate = date.toLocaleString();
+            newDate = moment(newDate).format('M/D/YYYY');
+            fiveDay.innerHTML += '<div class="card bg-primary text-light"><div class="card-body"><h5 class="card-title">' + newDate +
+             '</h5><img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img><p class="card-text">Temperature: ' + data.daily[i].temp.day.toFixed(1) + '\xB0F</br>Humidity: ' + data.daily[i].humidity + '%</p></div></div>'; 
+            // fiveDay.innerHTML += '<div class="card-body">'; 
+            // fiveDay.innerHTML += '<h4 class="card-title">' + newDate + '</h4>';
+            // fiveDay.innerHTML += '<img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img>';
+            // fiveDay.innerHTML += '<p class="card-text">Temperature: ' + data.daily[i].temp.day.toFixed(1) + '\xB0F</br>Humidity: ' + data.daily[i].humidity + '%</p></div></div>';
+            // fiveDay.innerHTML += 'Humidity: ' + data.daily[i].humidity + '%</p>';
+            // fiveDay.innerHTML += '</div></div>';
             }
             
             current = document.getElementById("current");
@@ -100,7 +105,8 @@ for (var i = 0; i < loadedCities.length; i++) {
     savedCities.push(loadedCities[i]);
     var newCity = document.createElement('li');    
     newCity.textContent = loadedCities[i];    
-    newCity.setAttribute("onclick", "getWeather($(this).text())");    
+    newCity.setAttribute("onclick", "getWeather($(this).text())");
+    newCity.setAttribute("class", "card");      
     cityStore.appendChild(newCity);
 }
 }
@@ -108,7 +114,8 @@ for (var i = 0; i < loadedCities.length; i++) {
 function newCity(name) {
     var newCity = document.createElement('li');
     newCity.textContent = name;
-    newCity.setAttribute("onclick", "getWeather($(this).text())");    
+    newCity.setAttribute("onclick", "getWeather($(this).text())");
+    newCity.setAttribute("class", "card");     
     cityStore.appendChild(newCity);
 }
 
