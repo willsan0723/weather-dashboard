@@ -1,7 +1,7 @@
 
 var savedCities = [];
 var cityStore = document.getElementById("city-store");
-
+var fiveDay = document.getElementById("5day");
 
 function getWeather(city) {    
     fetch(
@@ -32,7 +32,7 @@ function getWeather(city) {
 
             var current = document.createElement('p');
             current.setAttribute("id", "current");
-            current.innerHTML += 'Temperature: ' + data.main.temp + '\xB0F</br>';
+            current.innerHTML += 'Temperature: ' + data.main.temp.toFixed(1) + '\xB0F</br>';
             current.innerHTML += 'Humidity: ' + data.main.humidity + '%</br>';
             current.innerHTML += 'Wind Speed: ' + data.wind.speed + ' MPH</br>';
             responseContainerEl.appendChild(current);
@@ -44,11 +44,19 @@ function getWeather(city) {
             return response.json();
         })
         .then(function (data) {
-
-            var unixTime = data.current.dt;
+            fiveDay.innerHTML = '';
+            console.log(data);
+            // convert time to usable
+            for (var i = 1; i < 6; i++) {
+            var unixTime = data.daily[i].dt;
             var date = new Date(unixTime * 1000);
-            var newDate = date.toLocaleString();
-
+            var newDate = date.toLocaleString();           
+            fiveDay.innerHTML += '<h4>' + newDate + '</h4>';
+            fiveDay.innerHTML += '<img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png"></img>';
+            fiveDay.innerHTML += 'Temperature: ' + data.daily[i].temp.day.toFixed(1) + '\xB0F</br>';
+            fiveDay.innerHTML += 'Humidity: ' + data.daily[i].humidity + '%</br>';
+            }
+            
             current = document.getElementById("current");
             current.innerHTML += 'UV Index: <span id="UV">' + data.current.uvi + '</span>';
             var UV = document.getElementById("UV");
@@ -104,11 +112,5 @@ function newCity(name) {
     cityStore.appendChild(newCity);
 }
 
-// on click button set city to localStorage (json stringify)
-// each button will be a li that will be able to be clicked to call search again
-
-// json parse for reload
-
-// // uv and 5 day forecast &exclude=hourly,minutely
 loadCities();
 

@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>    
+    <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
@@ -18,18 +19,25 @@
         <div class="col-12 col-md-4">
             <h3>Search For a City:</h3>
             <form id="user-form" class="card-body">
-              <input id="city" type="text" autofocus="true" class="form-input" />
-              <button type="button" class="btn" onclick="getWeather(document.getElementById('city').value)"><i class="fas fa-search"></i></button>
+                <input id="city" type="text" autofocus="true" class="form-input" />
+                <button type="button" onSubmit="preventDefault()" class="btn"
+                    onclick="getWeather(document.getElementById('city').value)"><i class="fas fa-search"></i></button>
             </form>
             <h4 onclick="clearStorage()">Clear Saved Cities</h4>
             <ul id="city-store" class="card-body">
             </ul>
         </div>
         <div class="col-12 col-md-8">
-            <div id ="cityName"></div>
+            <div id="cityName"></div>
             <div id="response-container" class="list-group"></div>
-          </div>            
+        </div>
     </main>
+    <section class="flex-row justify-space-between">
+        <div class="col-12 col-md-8">
+            <h3>5-Day Forcast</h3>
+            <div id="5day"></div>
+        </div>
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
@@ -37,4 +45,3 @@
 </body>
 
 </html>
-
